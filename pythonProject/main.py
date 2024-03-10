@@ -4,6 +4,12 @@ import datetime
 from selenium import webdriver
 
 driver = webdriver.Chrome()
+file_name = "history.txt"
+
+
+def write_file(text):
+    with open(file_name, "a") as file:
+        file.write(text)
 
 
 def sleep_func(time_sec):
@@ -13,7 +19,9 @@ def sleep_func(time_sec):
 def open_link(links_name):
     # webbrowser.open_new_tab(links_name)
     driver.get(links_name)
-    print(f"open link: {links_name} in {datetime.datetime.now()}")
+    result_text = f"open link: {links_name} in {datetime.datetime.now()}"
+    print(result_text)
+    write_file(result_text)
 
 
 def close_link():
@@ -27,7 +35,9 @@ def main():
         open_link(link)
         sleep_func(time_sec=2)
         close_link()
-        print(f"close link {link} in {datetime.datetime.now()}")
+        result_txt = f"close link {link} in {datetime.datetime.now()}"
+        print(result_txt)
+        write_file("\n" + result_txt + "\n")
 
 
 if __name__ == '__main__':
