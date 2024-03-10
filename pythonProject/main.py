@@ -1,16 +1,34 @@
-# This is a sample Python script.
+import webbrowser
+import time
+import datetime
+from selenium import webdriver
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+driver = webdriver.Chrome()
 
 
-# Press the green button in the gutter to run the script.
+def sleep_func(time_sec):
+    time.sleep(time_sec)
+
+
+def open_link(links_name):
+    # webbrowser.open_new_tab(links_name)
+    driver.get(links_name)
+    print(f"open link: {links_name} in {datetime.datetime.now()}")
+
+
+def close_link():
+    driver.execute_script("window.close();")
+
+
+def main():
+    links_name = ["https://kvartiravkaluge.ru/", "https://domvkaluge.ru/", "https://uchastok40.ru/",
+                  "https://kvartiravdubae.ru/", "https://prodazhanedvizhimosti.ru/"]
+    for link in links_name:
+        open_link(link)
+        sleep_func(time_sec=2)
+        close_link()
+        print(f"close link {link} in {datetime.datetime.now()}")
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
