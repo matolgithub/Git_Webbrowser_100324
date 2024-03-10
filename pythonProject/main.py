@@ -33,7 +33,7 @@ def main():
                   "https://kvartiravdubae.ru/", "https://prodazhanedvizhimosti.ru/"]
     for link in links_name:
         open_link(link)
-        sleep_func(time_sec=2)
+        sleep_func(time_sec=1)
         close_link()
         result_txt = f"close link {link} in {datetime.datetime.now()}"
         print(result_txt)
