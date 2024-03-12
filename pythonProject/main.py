@@ -5,6 +5,8 @@ from selenium import webdriver
 
 driver = webdriver.Chrome()
 file_name = "history.txt"
+links_name = ["https://kvartiravkaluge.ru/", "https://domvkaluge.ru/", "https://uchastok40.ru/",
+              "https://kvartiravdubae.ru/", "https://prodazhanedvizhimosti.ru/"]
 
 
 def write_file(text):
@@ -29,15 +31,15 @@ def close_link():
 
 
 def main():
-    links_name = ["https://kvartiravkaluge.ru/", "https://domvkaluge.ru/", "https://uchastok40.ru/",
-                  "https://kvartiravdubae.ru/", "https://prodazhanedvizhimosti.ru/"]
-    for link in links_name:
-        open_link(link)
-        sleep_func(time_sec=1)
-        close_link()
-        result_txt = f"close link {link} in {datetime.datetime.now()}"
-        print(result_txt)
-        write_file("\n" + result_txt + "\n")
+    for times in range(3):
+        print(f"{times + 1} period!")
+        for link in links_name:
+            open_link(link)
+            sleep_func(time_sec=1)
+            close_link()
+            result_txt = f"close link {link} in {datetime.datetime.now()}"
+            print(result_txt)
+            write_file("\n" + result_txt + "\n")
 
 
 if __name__ == '__main__':
