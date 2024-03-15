@@ -1,5 +1,5 @@
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+# from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from fake_headers import Headers
 from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
@@ -8,7 +8,7 @@ import urllib.request
 from urllib.error import URLError
 from warnings import filterwarnings, warn
 
-filterwarnings("ignore", category=InsecureRequestWarning)
+# filterwarnings("ignore", category=InsecureRequestWarning)
 
 headers = Headers(headers=True).generate()
 ua = UserAgent().random
