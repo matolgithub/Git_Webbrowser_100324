@@ -1,3 +1,5 @@
+import random
+
 from proxy_requests import ProxyRequests
 from fake_headers import Headers
 import requests
@@ -26,8 +28,10 @@ proxies = {
 
 def main():
     start = time.time()
-    for _ in range(3):
-        driver = webdriver.Chrome(seleniumwire_options=options)
+    driver = webdriver.Chrome(seleniumwire_options=options)
+    circle = 10
+    for _ in range(circle):
+        print(f"--------------Circle number {circle}----------------------")
         for url in url_list:
             num = 1
             r = ProxyRequests(url)
