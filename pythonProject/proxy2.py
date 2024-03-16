@@ -26,22 +26,23 @@ proxies = {
 
 def main():
     start = time.time()
-    driver = webdriver.Chrome(seleniumwire_options=options)
-    for url in url_list:
-        num = 1
-        r = ProxyRequests(url)
-        list_ip = r.sockets
-        for ip in list_ip:
-            try:
-                header = Headers().generate()
-                driver.get(url=url)
-                response = requests.get(url=url, headers=header, proxies=proxies)
-                print(f"{num}.---- IP:{ip}. Web: {url} ----- Status code: {response.status_code}-------{header}")
-                num += 1
-            except URLError as error:
-                print(error.reason)
-            finally:
-                continue
+    for _ in range(3):
+        driver = webdriver.Chrome(seleniumwire_options=options)
+        for url in url_list:
+            num = 1
+            r = ProxyRequests(url)
+            list_ip = r.sockets
+            for ip in list_ip:
+                try:
+                    header = Headers().generate()
+                    driver.get(url=url)
+                    response = requests.get(url=url, headers=header, proxies=proxies)
+                    print(f"{num}.---- IP:{ip}. Web: {url} ----- Status code: {response.status_code}-------{header}")
+                    num += 1
+                except URLError as error:
+                    print(error.reason)
+                finally:
+                    continue
     driver.quit()
     end = time.time()
     total_time = datetime.timedelta(seconds=(end - start))
