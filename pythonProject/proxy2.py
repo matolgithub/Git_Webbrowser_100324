@@ -1,7 +1,8 @@
 from proxy_requests import ProxyRequests
 from fake_headers import Headers
 import requests
-from selenium import webdriver
+# from selenium import webdriver
+from seleniumwire import webdriver
 from urllib.error import URLError
 import time
 import datetime
@@ -10,6 +11,14 @@ from proxy_info import proxy_login, proxy_password
 url_list = ["https://kvartiravkaluge.ru/", "https://domvkaluge.ru/", "https://uchastok40.ru/",
             "https://kvartiravdubae.ru/", "https://prodazhanedvizhimosti.ru/"]
 
+options = {
+    'proxy': {
+        'http': f'http://{proxy_login}:{proxy_password}@193.233.62.99:9265',
+        'https': f'https://{proxy_login}:{proxy_password}@193.233.62.99:9265',
+        'no_proxy': 'localhost,127.0.0.1'
+    }
+}
+
 proxies = {
     "https": f"http://{proxy_login}:{proxy_password}@193.233.62.99:9265",
 }
@@ -17,7 +26,7 @@ proxies = {
 
 def main():
     start = time.time()
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(seleniumwire_options=options)
     for url in url_list:
         num = 1
         r = ProxyRequests(url)
